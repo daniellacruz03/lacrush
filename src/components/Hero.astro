@@ -1,0 +1,566 @@
+---
+// Hero.astro - Refactored with Official Apple x SKIMS Aesthetic (Monochrome Black & White)
+---
+
+<section id="inicio" class="hero-section">
+  <div class="container hero-container">
+    <!-- Main Hero Header (FIRST AT TOP) -->
+    <span class="hero-tag">Portafolio de Desarrollo Web</span>
+    
+    <h1 class="hero-title">
+      Desarrollo web. <br />
+      <span class="hero-title-sub">Perfeccionado al detalle.</span>
+    </h1>
+
+    <p class="hero-description">
+      Plataformas digitales rápidas, elegantes e intuitivas diseñadas por <strong class="brand-inline">lacrush<span class="brand-sub">engineering</span></strong> con estándares de ingeniería de nivel internacional.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#proyectos" class="btn-apple-primary">
+        Ver Proyectos
+      </a>
+      <a href="#contacto" class="btn-apple-secondary">
+        Contactar ↗
+      </a>
+    </div>
+
+    <!-- Apple Dark Showcase Banner - Featured Project: Burger House -->
+    <a 
+      href="https://www.burgerhousemerida.com" 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      class="apple-banner-card" 
+      id="banner-card" 
+      title="Explorar Burger House Mérida en vivo"
+    >
+      <img 
+        src="/contenedor.jpg" 
+        alt="Burger House Contenedor" 
+        class="card-bg-img"
+        loading="eager"
+      />
+
+      <!-- Laptop Screen Video Overlay -->
+      <video 
+        src="/Video Project.mp4" 
+        muted 
+        loop 
+        playsinline 
+        preload="metadata" 
+        class="screen-video laptop-screen-video" 
+        id="laptop-video"
+      ></video>
+
+      <!-- Smartphone Screen Video Overlay -->
+      <video 
+        src="/comingsoon.mp4" 
+        muted 
+        loop 
+        playsinline 
+        preload="metadata" 
+        class="screen-video mobile-screen-video" 
+        id="mobile-video"
+      ></video>
+    </a>
+
+    <!-- Bloque Ficha Técnica / Specs (3 Column Grid) -->
+    <div class="project-specs-grid">
+      <div class="spec-card">
+        <span class="spec-number">+45%</span>
+        <p class="spec-label">Aumento en tasa de conversión y pedidos digitales en vivo.</p>
+      </div>
+
+      <div class="spec-card">
+        <span class="spec-number">&lt; 0.8s</span>
+        <p class="spec-label">Carga optimizada de menú interactivo en redes móviles.</p>
+      </div>
+
+      <div class="spec-card">
+        <span class="spec-number">Full-Stack</span>
+        <p class="spec-label">Arquitectura limpia, backend automatizado y UI/UX a medida.</p>
+      </div>
+    </div>
+
+    <!-- Desglose del Proyecto y Badges (2 Column Grid) -->
+    <div class="project-breakdown-grid">
+      <div class="breakdown-left">
+        <h3 class="project-breakdown-title">Burger House Digital Experience</h3>
+        <p class="project-breakdown-desc">
+          Plataforma de pedidos y menú interactivo diseñada para maximizar la velocidad de respuesta, eliminar la fricción en ventas móviles y ofrecer una experiencia visual del más alto nivel.
+        </p>
+      </div>
+
+      <div class="breakdown-right">
+        <div class="tech-badges-list">
+          <span class="tech-badge-item">Astro</span>
+          <span class="tech-badge-item">React</span>
+          <span class="tech-badge-item">Node.js</span>
+          <span class="tech-badge-item">WhatsApp API</span>
+          <span class="tech-badge-item">Tailwind / CSS3</span>
+          <span class="tech-badge-item">Google Analytics 4</span>
+        </div>
+
+        <div class="breakdown-actions">
+          <a href="https://www.burgerhousemerida.com" target="_blank" rel="noopener noreferrer" class="btn-breakdown-primary">
+            Ver sitio en vivo ↗
+          </a>
+          <a href="https://github.com/daniellacruz03/BurguerHouse" target="_blank" rel="noopener noreferrer" class="btn-breakdown-secondary">
+            Ver código fuente ↗
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Container Hover-Play Interactivity (Triggers Both Videos Simultaneously)
+  const initContainerHoverVideos = () => {
+    const card = document.getElementById('banner-card');
+    const laptopVid = document.getElementById('laptop-video') as HTMLVideoElement | null;
+    const mobileVid = document.getElementById('mobile-video') as HTMLVideoElement | null;
+
+    if (card && (laptopVid || mobileVid)) {
+      // Ensure initial frame is ready and videos are paused at second 0
+      if (laptopVid) {
+        laptopVid.pause();
+        laptopVid.currentTime = 0;
+      }
+      if (mobileVid) {
+        mobileVid.pause();
+        mobileVid.currentTime = 0;
+      }
+
+      card.addEventListener('mouseenter', () => {
+        if (laptopVid) {
+          laptopVid.play().catch((err) => {
+            console.log('Laptop video play error:', err);
+          });
+        }
+        if (mobileVid) {
+          mobileVid.play().catch((err) => {
+            console.log('Mobile video play error:', err);
+          });
+        }
+      });
+
+      card.addEventListener('mouseleave', () => {
+        if (laptopVid) {
+          laptopVid.pause();
+          laptopVid.currentTime = 0;
+        }
+        if (mobileVid) {
+          mobileVid.pause();
+          mobileVid.currentTime = 0;
+        }
+      });
+    }
+  };
+
+  // Run on DOM load and Astro page transitions
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initContainerHoverVideos);
+  } else {
+    initContainerHoverVideos();
+  }
+</script>
+
+<style>
+  .hero-section {
+    padding-top: 5.5rem;
+    padding-bottom: 5.5rem;
+    text-align: center;
+    background-color: var(--apple-bg, #fbfbfd);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .hero-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-tag {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #86868b;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.75rem;
+  }
+
+  .hero-title {
+    font-family: var(--font-apple, -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif);
+    font-size: clamp(3rem, 6.5vw, 5.2rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    color: #1d1d1f;
+    margin-bottom: 1.2rem;
+  }
+
+  .hero-title-sub {
+    color: #86868b;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+  }
+
+  .hero-description {
+    font-size: clamp(1.1rem, 2.2vw, 1.35rem);
+    font-weight: 400;
+    color: #515154;
+    max-width: 680px;
+    line-height: 1.45;
+    margin-bottom: 2.5rem;
+    letter-spacing: -0.015em;
+  }
+
+  .brand-inline {
+    font-family: var(--font-apple);
+    color: #1d1d1f;
+    font-weight: 600;
+  }
+
+  .brand-sub {
+    font-weight: 400;
+    color: #86868b;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1.2rem;
+    margin-bottom: 4.5rem;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Apple Showcase Banner Card */
+  .apple-banner-card {
+    width: 100%;
+    max-width: 1080px;
+    aspect-ratio: 16 / 8.5;
+    min-height: 400px;
+    margin-bottom: 3.5rem;
+    border-radius: var(--radius-apple, 22px);
+    position: relative;
+    z-index: 10;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    display: block;
+    box-shadow: 0 24px 50px rgba(0, 0, 0, 0.18);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    cursor: pointer;
+  }
+
+  .card-bg-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .apple-banner-card:hover .card-bg-img {
+    transform: scale(1.015);
+  }
+
+  /* Clean Video Overlays */
+  .screen-video {
+    position: absolute;
+    object-fit: cover;
+    pointer-events: none;
+    z-index: 2;
+    background: transparent;
+  }
+
+  /* Laptop Screen Video Overlay Placement */
+  .laptop-screen-video {
+    top: 18%;
+    left: 32.2%;
+    width: 35.8%;
+    height: 42.5%;
+    border-radius: 6px;
+    object-position: top center;
+  }
+
+  /* Smartphone Screen Video Overlay Placement */
+  .mobile-screen-video {
+    top: 50.8%;
+    left: 20.3%;
+    width: 8.8%;
+    height: 27.8%;
+    border-radius: 13px;
+    object-position: top center;
+  }
+
+  /* Bloque Ficha Técnica / Specs (3 Column Grid) */
+  .project-specs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 1080px;
+    margin: 0 0 3.5rem 0;
+    text-align: left;
+  }
+
+  .spec-card {
+    background-color: #fbfbfd;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 16px;
+    padding: 2rem;
+    position: relative;
+    z-index: 5;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+
+  .spec-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(0, 0, 0, 0.14);
+  }
+
+  .spec-number {
+    display: block;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif;
+    font-size: clamp(2.4rem, 4vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: #1d1d1f;
+    line-height: 1.1;
+  }
+
+  .spec-label {
+    font-size: 0.88rem;
+    color: #86868b;
+    margin-top: 0.6rem;
+    line-height: 1.45;
+  }
+
+  /* Desglose del Proyecto y Badges (2 Column Grid) */
+  .project-breakdown-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+    width: 100%;
+    max-width: 1080px;
+    margin: 0 0 5.5rem 0;
+    text-align: left;
+  }
+
+  .breakdown-left {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .project-code-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: #86868b;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .project-breakdown-title {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.2rem);
+    font-weight: 700;
+    color: #1d1d1f;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+  }
+
+  .project-breakdown-desc {
+    font-size: 1rem;
+    color: #515154;
+    line-height: 1.6;
+    margin-top: 1rem;
+  }
+
+  .breakdown-right {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .tech-badges-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.8rem;
+  }
+
+  .tech-badge-item {
+    background-color: #f5f5f7;
+    color: #1d1d1f;
+    font-size: 0.78rem;
+    font-weight: 500;
+    padding: 0.35rem 0.85rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  .breakdown-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .btn-breakdown-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1d1d1f;
+    color: #ffffff;
+    padding: 0.85rem 1.8rem;
+    border-radius: 9999px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    transition: all 0.3s ease;
+    border: 1px solid #1d1d1f;
+  }
+
+  .btn-breakdown-primary:hover {
+    background-color: #000000;
+    border-color: #000000;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  }
+
+  .btn-breakdown-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #d2d2d7;
+    color: #1d1d1f;
+    background: transparent;
+    padding: 0.85rem 1.8rem;
+    border-radius: 9999px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    transition: all 0.3s ease;
+  }
+
+  .btn-breakdown-secondary:hover {
+    background-color: #f5f5f7;
+    border-color: #1d1d1f;
+    transform: translateY(-1px);
+  }
+
+  @media (max-width: 900px) {
+    .project-specs-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin: 0 0 2rem 0;
+    }
+
+    .project-breakdown-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      margin: 0 0 3rem 0;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero-section {
+      padding-top: 3.2rem;
+      padding-bottom: 3.5rem;
+    }
+
+    .hero-tag {
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 8vw, 2.6rem);
+      line-height: 1.12;
+      margin-bottom: 1rem;
+    }
+
+    .hero-description {
+      font-size: 0.96rem;
+      line-height: 1.5;
+      margin-bottom: 1.8rem;
+      padding: 0 0.5rem;
+    }
+
+    .hero-actions {
+      flex-direction: column;
+      width: 100%;
+      max-width: 100%;
+      gap: 0.75rem;
+      margin-bottom: 2.8rem;
+    }
+
+    .btn-apple-primary, .btn-apple-secondary {
+      width: 100%;
+      padding: 0.85rem 1.4rem;
+      font-size: 0.92rem;
+    }
+
+    .apple-banner-card {
+      aspect-ratio: 16 / 9;
+      min-height: 220px;
+      border-radius: 16px;
+      margin-bottom: 2.5rem;
+    }
+
+    .project-specs-grid {
+      grid-template-columns: 1fr;
+      gap: 0.85rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .spec-card {
+      padding: 1.4rem 1.2rem;
+      border-radius: 14px;
+    }
+
+    .spec-number {
+      font-size: 2.2rem;
+    }
+
+    .spec-label {
+      font-size: 0.82rem;
+      margin-top: 0.4rem;
+    }
+
+    .project-breakdown-grid {
+      grid-template-columns: 1fr;
+      gap: 1.8rem;
+      margin-bottom: 2rem;
+    }
+
+    .project-breakdown-title {
+      font-size: 1.5rem;
+      line-height: 1.2;
+    }
+
+    .project-breakdown-desc {
+      font-size: 0.92rem;
+      line-height: 1.55;
+      margin-top: 0.75rem;
+    }
+
+    .breakdown-actions {
+      flex-direction: column;
+      width: 100%;
+      gap: 0.75rem;
+    }
+
+    .btn-breakdown-primary, .btn-breakdown-secondary {
+      width: 100%;
+      padding: 0.85rem 1.2rem;
+      font-size: 0.9rem;
+    }
+  }
+</style>

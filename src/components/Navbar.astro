@@ -1,0 +1,116 @@
+---
+// Navbar.astro - Fixed Header at Top with Centered Elements (Apple Glassmorphism Aesthetic)
+---
+
+<header class="apple-navbar">
+  <div class="navbar-container">
+    <a href="#inicio" class="logo">
+      <span class="logo-text">lacrush<span class="logo-sub">engineering</span></span>
+    </a>
+
+    <nav class="nav-links">
+      <a href="#inicio" class="nav-link">Inicio</a>
+      <a href="#proyectos" class="nav-link">Proyectos</a>
+      <a href="#habilidades" class="nav-link">Habilidades</a>
+      <a href="#contacto" class="nav-link">Contacto</a>
+    </nav>
+
+    <a href="#contacto" class="btn-apple-primary nav-btn">
+      Contacto
+    </a>
+  </div>
+</header>
+
+<style>
+  .apple-navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 50;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  .navbar-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    width: 100%;
+    max-width: 1080px;
+    padding: 0 1.5rem;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .logo:hover {
+    opacity: 0.75;
+    transform: scale(0.99);
+  }
+
+  .logo-text {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", sans-serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #1d1d1f;
+    letter-spacing: -0.02em;
+    text-transform: lowercase;
+    user-select: none;
+  }
+
+  .logo-sub {
+    font-weight: 400;
+    color: #86868b;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2.2rem;
+  }
+
+  .nav-link {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+    font-size: 0.88rem;
+    font-weight: 400;
+    color: #515154;
+    letter-spacing: -0.01em;
+    transition: color 0.2s ease;
+  }
+
+  .nav-link:hover {
+    color: #1d1d1f;
+  }
+
+  .nav-btn {
+    padding: 0.4rem 1.1rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+  }
+
+  @media (max-width: 768px) {
+    .navbar-container {
+      justify-content: space-between;
+      padding: 0 1.2rem;
+    }
+
+    .nav-links {
+      display: none;
+    }
+
+    .logo-text {
+      font-size: 1.05rem;
+    }
+  }
+</style>

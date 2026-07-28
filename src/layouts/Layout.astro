@@ -1,0 +1,134 @@
+---
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { 
+  title = "lacrush engineering | Empresa de Desarrollo Web & Soluciones Digitales", 
+  description = "Plataforma oficial de lacrush engineering. Empresa de desarrollo web e ingeniería de productos digitales." 
+} = Astro.props;
+---
+
+<!usr/bin/env html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- SEO Meta Tags -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+  </head>
+  <body>
+    <canvas id="particle-canvas"></canvas>
+    <Navbar />
+    <main>
+      <!-- La etiqueta <slot /> es la magia de Astro: aquí se inyecta el contenido de cada página -->
+      <slot />
+    </main>
+    <Footer />
+
+    <script>
+      const initParticleCanvas = () => {
+        const canvas = document.getElementById('particle-canvas') as HTMLCanvasElement | null;
+        if (!canvas) return;
+
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
+
+        interface Particle {
+          x: number;
+          y: number;
+          vx: number;
+          vy: number;
+          size: number;
+          alpha: number;
+        }
+
+        let particles: Particle[] = [];
+
+        const resize = () => {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+          initParticles();
+        };
+
+        const initParticles = () => {
+          particles = [];
+          const count = Math.min(85, Math.max(40, Math.floor((canvas.width * canvas.height) / 14000)));
+          for (let i = 0; i < count; i++) {
+            particles.push({
+              x: Math.random() * canvas.width,
+              y: Math.random() * canvas.height,
+              vx: (Math.random() - 0.5) * 0.6,
+              vy: (Math.random() - 0.5) * 0.6,
+              size: Math.random() * 2.5 + 1.5,
+              alpha: Math.random() * 0.4 + 0.25,
+            });
+          }
+        };
+
+        const animate = () => {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+          for (let i = 0; i < particles.length; i++) {
+            const p = particles[i];
+            p.x += p.vx;
+            p.y += p.vy;
+
+            if (p.x < 0) p.x = canvas.width;
+            if (p.x > canvas.width) p.x = 0;
+            if (p.y < 0) p.y = canvas.height;
+            if (p.y > canvas.height) p.y = 0;
+
+            // Draw particle
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(30, 30, 35, ${p.alpha})`;
+            ctx.fill();
+
+            // Draw subtle connection lines between close particles
+            for (let j = i + 1; j < particles.length; j++) {
+              const p2 = particles[j];
+              const dx = p.x - p2.x;
+              const dy = p.y - p2.y;
+              const dist = Math.sqrt(dx * dx + dy * dy);
+
+              if (dist < 120) {
+                const lineAlpha = (1 - dist / 120) * 0.22;
+                ctx.beginPath();
+                ctx.moveTo(p.x, p.y);
+                ctx.lineTo(p2.x, p2.y);
+                ctx.strokeStyle = `rgba(30, 30, 35, ${lineAlpha})`;
+                ctx.lineWidth = 0.9;
+                ctx.stroke();
+              }
+            }
+          }
+
+          requestAnimationFrame(animate);
+        };
+
+        window.addEventListener('resize', resize);
+        resize();
+        animate();
+      };
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initParticleCanvas);
+      } else {
+        initParticleCanvas();
+      }
+    </script>
+  </body>
+</html>

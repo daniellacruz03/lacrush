@@ -1,0 +1,141 @@
+---
+// Skills.astro - Apple Minimalist Tech Stack with Modern Grey Pill-Badges (Monochrome Tech/Luxury)
+const skillGroups = [
+  {
+    category: "Frontend",
+    items: ["Astro", "HTML5 & CSS3", "JavaScript (ES6+)", "TypeScript", "React / Next.js"]
+  },
+  {
+    category: "Backend & Datos",
+    items: ["Node.js", "Express", "APIs REST", "Firebase", "Supabase", "Railway"]
+  },
+  {
+    category: "Diseño & Herramientas",
+    items: ["Figma UI/UX", "Git & GitHub", "Vite", "SEO & Performance"]
+  }
+];
+---
+
+<section id="habilidades" class="skills-section">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Habilidades. <span class="section-title-sub">Tecnología de vanguardia.</span></h2>
+    </div>
+
+    <div class="skills-grid">
+      {skillGroups.map((group) => (
+        <div class="apple-card skill-card">
+          <h3 class="group-title">{group.category}</h3>
+          <div class="skill-badges-container">
+            {group.items.map((item) => (
+              <span class="skill-pill-badge">{item}</span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .skills-section {
+    padding: 6.5rem 0;
+    background-color: #fbfbfd;
+  }
+
+  .section-header {
+    margin-bottom: 3rem;
+  }
+
+  .section-title {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #1d1d1f;
+  }
+
+  .section-title-sub {
+    color: #86868b;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.8rem;
+  }
+
+  .skill-card {
+    padding: 2.5rem;
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+    position: relative;
+    z-index: 10;
+  }
+
+  .group-title {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1d1d1f;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    letter-spacing: -0.02em;
+  }
+
+  .skill-badges-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+  }
+
+  .skill-pill-badge {
+    background-color: #f5f5f7;
+    color: #1d1d1f;
+    font-size: 0.88rem;
+    font-weight: 500;
+    padding: 0.45rem 1rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    transition: all 0.25s ease;
+    letter-spacing: -0.01em;
+  }
+
+  .skill-pill-badge:hover {
+    background-color: #1d1d1f;
+    color: #ffffff;
+    border-color: #1d1d1f;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  }
+
+  @media (max-width: 768px) {
+    .skills-section {
+      padding: 4rem 0;
+    }
+
+    .section-header {
+      margin-bottom: 2rem;
+    }
+
+    .section-title {
+      font-size: 2rem;
+    }
+
+    .skills-grid {
+      gap: 1.2rem;
+    }
+
+    .skill-card {
+      padding: 1.6rem 1.25rem;
+    }
+
+    .skill-pill-badge {
+      font-size: 0.82rem;
+      padding: 0.4rem 0.85rem;
+    }
+  }
+</style>

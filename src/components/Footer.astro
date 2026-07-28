@@ -1,0 +1,197 @@
+---
+// Footer.astro - Apple Minimalist Footer
+const currentYear = new Date().getFullYear();
+const contactEmail = "daniellacruznieto@gmail.com";
+---
+
+<footer id="contacto" class="apple-footer">
+  <div class="container">
+    <div class="contact-banner">
+      <h2 class="contact-title">¿Listo para crear algo increíble?</h2>
+      <p class="contact-sub">Inicia tu proyecto web hoy mismo con lacrush engineering.</p>
+      <a 
+        href={`mailto:${contactEmail}`} 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        class="btn-apple-primary contact-btn"
+        id="email-contact-btn"
+        title="Haz clic para abrir Gmail o copiar email"
+      >
+        <span id="email-btn-text">{contactEmail}</span>
+      </a>
+    </div>
+
+    <div class="footer-nav">
+      <div class="footer-col">
+        <h4 class="col-title">Navegación</h4>
+        <a href="#inicio" class="footer-link">Inicio</a>
+        <a href="#proyectos" class="footer-link">Proyectos</a>
+        <a href="#habilidades" class="footer-link">Habilidades</a>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="col-title">Redes &amp; Social</h4>
+        <a href="https://github.com/daniellacruz03/BurguerHouse" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub</a>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="col-title">Empresa</h4>
+        <span class="footer-text">lacrush Engineering</span>
+        <span class="footer-text">Ingeniería Web &amp; Software</span>
+      </div>
+    </div>
+
+    <div class="footer-legal">
+      <p>Copyright © {currentYear} lacrush engineering. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Bulletproof Email Click Action (Opens Gmail + Copies to Clipboard)
+  const setupEmailButton = () => {
+    const btn = document.getElementById('email-contact-btn');
+    const btnText = document.getElementById('email-btn-text');
+    const email = 'daniellacruznieto@gmail.com';
+
+    if (btn) {
+      btn.addEventListener('click', (e) => {
+        // Copy to clipboard
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(email).then(() => {
+            if (btnText) {
+              const originalText = btnText.innerText;
+              btnText.innerText = '¡Email copiado al portapapeles!';
+              setTimeout(() => {
+                btnText.innerText = originalText;
+              }, 2500);
+            }
+          }).catch(() => {});
+        }
+
+        // Open Gmail Web Direct Compose in a new tab
+        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(email)}`;
+        window.open(gmailUrl, '_blank');
+      });
+    }
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupEmailButton);
+  } else {
+    setupEmailButton();
+  }
+</script>
+
+<style>
+  .apple-footer {
+    background-color: #f5f5f7;
+    color: #86868b;
+    font-size: 0.82rem;
+    padding-top: 5rem;
+    padding-bottom: 3rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  .contact-banner {
+    text-align: center;
+    padding-bottom: 4rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    margin-bottom: 3rem;
+  }
+
+  .contact-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: #1d1d1f;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-sub {
+    font-size: 1.15rem;
+    color: #86868b;
+    margin-bottom: 2rem;
+  }
+
+  .contact-btn {
+    font-size: 1rem;
+    padding: 0.8rem 2rem;
+    cursor: pointer;
+  }
+
+  .footer-nav {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .col-title {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #1d1d1f;
+    margin-bottom: 0.8rem;
+  }
+
+  .footer-link, .footer-text {
+    display: block;
+    color: #515154;
+    margin-bottom: 0.5rem;
+    transition: color 0.2s ease;
+  }
+
+  .footer-link:hover {
+    color: #1d1d1f;
+  }
+
+  .footer-legal {
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .apple-footer {
+      padding-top: 3.5rem;
+      padding-bottom: 2.5rem;
+    }
+
+    .contact-banner {
+      padding-bottom: 2.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .contact-title {
+      font-size: 1.8rem;
+      line-height: 1.2;
+    }
+
+    .contact-sub {
+      font-size: 0.96rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-btn {
+      width: 100%;
+      font-size: 0.85rem;
+      padding: 0.85rem 1rem;
+      word-break: break-all;
+    }
+
+    .footer-nav {
+      grid-template-columns: 1fr;
+      gap: 1.6rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-legal {
+      text-align: center;
+      justify-content: center;
+    }
+  }
+</style>

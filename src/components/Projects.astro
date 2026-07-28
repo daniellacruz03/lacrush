@@ -1,0 +1,544 @@
+---
+// Projects.astro - Apple Showcase Grid featuring Burger House Modules, Logo & PDF Dossier
+import logoBhImg from '../../public/logobh.PNG';
+const pdfPath = encodeURI("/Burguer House Menú Digital.pdf");
+const logoPath = logoBhImg.src;
+
+const burgerHouseModules = [
+  {
+    title: "Burger House - Menú Digital",
+    subtitle: "Plataforma E-Commerce Gastronómica",
+    description: "Ecosistema digital completo para restaurantes: pantalla de carga fluida ('Encendiendo la Parrilla'), buscador inteligente en milisegundos, carrito flotante y automatización total hacia WhatsApp.",
+    tag: "Plataforma Principal",
+    highlights: ["Carga & Retención Pasiva", "Pre-órdenes fuera de horario", "Integración Directa WhatsApp API"],
+    tech: ["Astro", "React", "HTML5", "JavaScript ES6+", "WhatsApp API"],
+    liveLink: "https://www.burgerhousemerida.com",
+    pdfLink: pdfPath
+  },
+  {
+    title: "Onboarding UI/UX & Up-Selling",
+    subtitle: "Módulo Educativo & Personalización de Producto",
+    description: "Guía interactiva de 5 pasos ('¿Cómo Pedir?'), modificadores rápidos de ingredientes (Sí/No Pepinillos), sugerencias dinámicas de salsas y cross-selling inteligente de bebidas.",
+    tag: "Optimización UX / UI",
+    highlights: ["Módulo '¿Cómo Pedir?' en 5 pasos", "Personalizador sin errores de comanda", "Cross-selling automatizado de bebidas"],
+    tech: ["UI/UX", "JavaScript", "Modales Interactivos", "Cross-Selling"],
+    liveLink: "https://www.burgerhousemerida.com",
+    pdfLink: pdfPath
+  },
+  {
+    title: "Logística Adaptativa & Analítica GA4",
+    subtitle: "Delivery, Pick Up & Business Intelligence",
+    description: "Módulo de despacho con geolocalización ('Enviar Dirección'), opción Pick Up sincronizada con Google Maps, pantalla de contingencia personalizada y monitoreo en tiempo real con Google Analytics 4.",
+    tag: "Business Intelligence",
+    highlights: ["Delivery inteligente & Pick Up Google Maps", "Pantalla de Mantenimiento Empática", "Seguimiento en Tiempo Real (GA4)"],
+    tech: ["Google Analytics 4", "Google Maps API", "Business Intelligence", "Logística Web"],
+    liveLink: "https://www.burgerhousemerida.com",
+    pdfLink: pdfPath
+  }
+];
+---
+
+<section id="proyectos" class="projects-section">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Proyectos. <span class="section-title-sub">Caso de Estudio: Burger House</span></h2>
+      <p class="section-description">
+        Análisis funcional, optimización interactiva de pedidos y soluciones logísticas orientadas a maximizar conversiones y rentabilidad.
+      </p>
+    </div>
+
+    <!-- Banner Presentación de Producto 2 Columnas (Apple Aesthetic #f5f5f7) -->
+    <div class="burger-dossier-banner">
+      <!-- Columna Izquierda: Información & CTA (7 Cols) -->
+      <div class="dossier-info-col">
+        <span class="dossier-red-badge">DOSSIER TÉCNICO COMPLETO</span>
+        <h3 class="dossier-title">Burger House — Análisis Funcional &amp; Ecosistema Digital</h3>
+        <p class="dossier-desc">
+          Explora la presentación estratégica de 22 páginas sobre la arquitectura de retención pasiva, onboarding de 5 pasos, logística de delivery/pickup y analítica en GA4.
+        </p>
+        <div class="dossier-btn-wrapper">
+          <a href={pdfPath} target="_blank" rel="noopener noreferrer" class="btn-dossier-primary">
+            Ver Presentación PDF (22 págs) ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- Columna Derecha: Preview del Dossier (5 Cols) -->
+      <div class="dossier-preview-col">
+        <a href={pdfPath} target="_blank" rel="noopener noreferrer" class="dossier-document-card" title="Abrir Dossier PDF completo">
+          <div class="document-cover">
+            <div class="doc-header">
+              <span class="doc-brand">BURGER HOUSE</span>
+              <span class="doc-badge-tag">PDF 22 PÁGS</span>
+            </div>
+            <img src={logoPath} alt="Burger House Logo" class="doc-logo" />
+            <h4 class="doc-title">Arquitectura de Retención &amp; E-Commerce Gastronómico</h4>
+            <p class="doc-subtitle">Análisis Funcional, Onboarding UX &amp; Delivery Logística</p>
+            <div class="doc-footer">
+              <span class="doc-author">lacrush Engineering</span>
+              <span class="doc-year">2026</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Módulos del Proyecto -->
+    <div class="projects-grid">
+      {burgerHouseModules.map((project) => (
+        <article class="apple-card project-card">
+          <div class="card-content">
+            <div class="card-header-row">
+              <span class="card-tag">{project.tag}</span>
+            </div>
+            <h3 class="project-title">{project.title}</h3>
+            <p class="project-subtitle">{project.subtitle}</p>
+            <p class="project-description">{project.description}</p>
+            
+            <div class="highlights-list">
+              {project.highlights.map((item) => (
+                <div class="highlight-item">
+                  <span class="highlight-bullet">✓</span>
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+
+            <div class="tech-tags">
+              {project.tech.map((t) => (
+                <span class="tech-pill">{t}</span>
+              ))}
+            </div>
+          </div>
+          <div class="card-footer">
+            <a href={project.liveLink} target="_blank" rel="noopener noreferrer" class="btn-apple-secondary project-btn">
+              Ver Demo en Vivo ↗
+            </a>
+            <a href="https://github.com/daniellacruz03/BurguerHouse" target="_blank" rel="noopener noreferrer" class="btn-apple-text-link">
+              GitHub ↗
+            </a>
+            <a href={project.pdfLink} target="_blank" rel="noopener noreferrer" class="btn-apple-text-link">
+              Ver PDF
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .projects-section {
+    padding: 7rem 0;
+    background-color: #ffffff;
+  }
+
+  .section-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .section-title {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #1d1d1f;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-title-sub {
+    color: #86868b;
+  }
+
+  .section-description {
+    font-size: 1.1rem;
+    color: #515154;
+    max-width: 720px;
+    line-height: 1.5;
+  }
+
+  /* Banner Presentación de Producto (Apple #f5f5f7 & 2 Columnas) */
+  .burger-dossier-banner {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 2.5rem;
+    align-items: center;
+    padding: 3rem 3.2rem;
+    background-color: #f5f5f7;
+    border-radius: 24px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    margin-bottom: 3.5rem;
+    overflow: hidden;
+    text-align: left;
+    position: relative;
+    z-index: 5;
+  }
+
+  .dossier-info-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .dossier-red-badge {
+    display: inline-block;
+    background: rgba(239, 68, 68, 0.1);
+    color: #dc2626;
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 0.3rem 0.85rem;
+    border-radius: 9999px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(220, 38, 38, 0.18);
+  }
+
+  .dossier-title {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif;
+    font-size: clamp(1.6rem, 3.2vw, 2.1rem);
+    font-weight: 700;
+    color: #1d1d1f;
+    letter-spacing: -0.025em;
+    line-height: 1.18;
+    margin-bottom: 0.85rem;
+  }
+
+  .dossier-desc {
+    font-size: 1rem;
+    color: #515154;
+    line-height: 1.6;
+    margin-bottom: 1.8rem;
+    max-width: 580px;
+  }
+
+  .dossier-btn-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  .btn-dossier-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #1d1d1f;
+    color: #ffffff;
+    padding: 0.85rem 1.8rem;
+    border-radius: 9999px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    transition: all 0.3s ease;
+    border: 1px solid #1d1d1f;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  }
+
+  .btn-dossier-primary:hover {
+    background-color: #000000;
+    border-color: #000000;
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+  }
+
+  /* Columna Derecha: Preview del Dossier */
+  .dossier-preview-col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
+  }
+
+  .dossier-document-card {
+    display: block;
+    width: 100%;
+    max-width: 340px;
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.04);
+    padding: 1.8rem 1.6rem;
+    transform: rotate(1.5deg) translateY(2px);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    text-decoration: none;
+  }
+
+  .dossier-document-card:hover {
+    transform: rotate(0deg) translateY(-4px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12), 0 8px 20px rgba(0, 0, 0, 0.06);
+  }
+
+  .document-cover {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .doc-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .doc-brand {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #e62b00;
+  }
+
+  .doc-badge-tag {
+    font-size: 0.68rem;
+    font-weight: 600;
+    background: #f5f5f7;
+    color: #515154;
+    padding: 0.2rem 0.55rem;
+    border-radius: 6px;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .doc-logo {
+    height: 54px;
+    width: auto;
+    max-width: 140px;
+    object-fit: contain;
+    margin-bottom: 1.2rem;
+    display: block;
+  }
+
+  .doc-title {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #1d1d1f;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    margin-bottom: 0.4rem;
+  }
+
+  .doc-subtitle {
+    font-size: 0.82rem;
+    color: #86868b;
+    line-height: 1.4;
+    margin-bottom: 1.8rem;
+  }
+
+  .doc-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    font-size: 0.75rem;
+    color: #86868b;
+    font-weight: 500;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+
+
+  /* Grid */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.8rem;
+  }
+
+  .project-card {
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 430px;
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 10;
+  }
+
+  .project-card:hover {
+    border-color: rgba(255, 46, 0, 0.3);
+    box-shadow: 0 12px 32px rgba(230, 43, 0, 0.08);
+  }
+
+  .card-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .card-tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #e62b00;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: block;
+  }
+
+  .project-title {
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #000000;
+    letter-spacing: -0.025em;
+    margin-bottom: 0.25rem;
+  }
+
+  .project-subtitle {
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: #515154;
+    margin-bottom: 1rem;
+  }
+
+  .project-description {
+    font-size: 0.95rem;
+    color: #86868b;
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+  }
+
+  .highlights-list {
+    margin-bottom: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .highlight-item {
+    font-size: 0.85rem;
+    color: #1d1d1f;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .highlight-bullet {
+    color: #e62b00;
+    font-weight: bold;
+  }
+
+  .tech-tags {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+  }
+
+  .tech-pill {
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 0.2rem 0.6rem;
+    background: #f5f5f7;
+    border-radius: 6px;
+    color: #1d1d1f;
+  }
+
+  .card-footer {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .project-btn {
+    font-size: 0.88rem;
+    padding: 0.55rem 1.2rem;
+  }
+
+  .btn-apple-text-link {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #1d1d1f;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: opacity 0.2s;
+  }
+
+  .btn-apple-text-link:hover {
+    color: #e62b00;
+  }
+
+  @media (max-width: 768px) {
+    .projects-section {
+      padding: 3.5rem 0;
+    }
+
+    .section-header {
+      margin-bottom: 1.8rem;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      line-height: 1.15;
+    }
+
+    .section-description {
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .burger-dossier-banner {
+      padding: 1.8rem 1.25rem;
+      border-radius: 18px;
+      gap: 1.8rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .dossier-title {
+      font-size: 1.4rem;
+      line-height: 1.22;
+    }
+
+    .dossier-desc {
+      font-size: 0.92rem;
+      line-height: 1.5;
+      margin-bottom: 1.4rem;
+    }
+
+    .btn-dossier-primary {
+      width: 100%;
+      justify-content: center;
+      padding: 0.85rem 1.2rem;
+      font-size: 0.9rem;
+    }
+
+    .dossier-document-card {
+      transform: none;
+      max-width: 100%;
+      padding: 1.4rem 1.2rem;
+    }
+
+    .projects-grid {
+      gap: 1.2rem;
+    }
+
+    .project-card {
+      padding: 1.6rem 1.25rem;
+      min-height: auto;
+    }
+
+    .card-footer {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.75rem;
+    }
+
+    .project-btn {
+      width: 100%;
+      text-align: center;
+      justify-content: center;
+    }
+  }
+</style>
+
+
