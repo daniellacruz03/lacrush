@@ -40,28 +40,6 @@
         class="card-bg-img"
         loading="eager"
       />
-
-      <!-- Laptop Screen Video Overlay -->
-      <video 
-        src="/Video Project.mp4" 
-        muted 
-        loop 
-        playsinline 
-        preload="metadata" 
-        class="screen-video laptop-screen-video" 
-        id="laptop-video"
-      ></video>
-
-      <!-- Smartphone Screen Video Overlay -->
-      <video 
-        src="/comingsoon.mp4" 
-        muted 
-        loop 
-        playsinline 
-        preload="metadata" 
-        class="screen-video mobile-screen-video" 
-        id="mobile-video"
-      ></video>
     </a>
 
     <!-- Bloque Ficha Técnica / Specs (3 Column Grid) -->
@@ -113,58 +91,6 @@
     </div>
   </div>
 </section>
-
-<script>
-  // Container Hover-Play Interactivity (Triggers Both Videos Simultaneously)
-  const initContainerHoverVideos = () => {
-    const card = document.getElementById('banner-card');
-    const laptopVid = document.getElementById('laptop-video') as HTMLVideoElement | null;
-    const mobileVid = document.getElementById('mobile-video') as HTMLVideoElement | null;
-
-    if (card && (laptopVid || mobileVid)) {
-      // Ensure initial frame is ready and videos are paused at second 0
-      if (laptopVid) {
-        laptopVid.pause();
-        laptopVid.currentTime = 0;
-      }
-      if (mobileVid) {
-        mobileVid.pause();
-        mobileVid.currentTime = 0;
-      }
-
-      card.addEventListener('mouseenter', () => {
-        if (laptopVid) {
-          laptopVid.play().catch((err) => {
-            console.log('Laptop video play error:', err);
-          });
-        }
-        if (mobileVid) {
-          mobileVid.play().catch((err) => {
-            console.log('Mobile video play error:', err);
-          });
-        }
-      });
-
-      card.addEventListener('mouseleave', () => {
-        if (laptopVid) {
-          laptopVid.pause();
-          laptopVid.currentTime = 0;
-        }
-        if (mobileVid) {
-          mobileVid.pause();
-          mobileVid.currentTime = 0;
-        }
-      });
-    }
-  };
-
-  // Run on DOM load and Astro page transitions
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initContainerHoverVideos);
-  } else {
-    initContainerHoverVideos();
-  }
-</script>
 
 <style>
   .hero-section {
