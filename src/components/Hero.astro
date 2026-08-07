@@ -1,5 +1,6 @@
 ---
 // Hero.astro - Refactored with Official Apple x SKIMS Aesthetic (Monochrome Black & White)
+import contenedorImg from '../../public/contenedor.jpg';
 ---
 
 <section id="inicio" class="hero-section">
@@ -35,7 +36,7 @@
       title="Explorar Burger House Mérida en vivo"
     >
       <img 
-        src={`${import.meta.env.BASE_URL}/contenedor.jpg`.replace('//', '/')} 
+        src={contenedorImg.src} 
         alt="Burger House Contenedor" 
         class="card-bg-img"
         loading="eager"

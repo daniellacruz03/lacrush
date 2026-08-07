@@ -2,6 +2,7 @@
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
+import iconoImg from '../../public/icono.png';
 
 interface Props {
   title?: string;
@@ -19,8 +20,8 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href={`${import.meta.env.BASE_URL}/icono.png`.replace('//', '/')} />
-    <link rel="apple-touch-icon" href={`${import.meta.env.BASE_URL}/icono.png`.replace('//', '/')} />
+    <link rel="icon" type="image/png" href={iconoImg.src} />
+    <link rel="apple-touch-icon" href={iconoImg.src} />
     <meta name="generator" content={Astro.generator} />
     
     <!-- SEO Meta Tags -->
